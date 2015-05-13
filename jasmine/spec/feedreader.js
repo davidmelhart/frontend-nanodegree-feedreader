@@ -15,11 +15,10 @@ $(function() {
     */
     describe('RSS Feeds', function() {
         /* This is our first test - it tests to make sure that the
-         * allFeeds variable has been defined and that it is not
-         * empty. Experiment with this before you get started on
-         * the rest of this project. What happens when you change
-         * allFeeds in app.js to be an empty array and refresh the
-         * page?
+         * "allFeeds" variable has been defined and that it is not
+         * empty.
+         * It does so by checking if "allFeeds" is defined and
+         * if its lenght is grater than 0.
          */
         it('are defined', function() {
             expect(allFeeds).toBeDefined();
@@ -27,9 +26,13 @@ $(function() {
         });
 
 
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a URL defined
+        /* This test loops through each feed in
+         * the "allFeeds" object and ensures it has a URL defined
          * and that the URL is not empty.
+         * It uses a for loop and iterates through all of elements
+         * of the "allFeeds" array testing if the url property
+         * of each item within "allFeeds" is defined and have length
+         * greater than 0 (not empty).
          */
 
         it("has URL defined", function () {
@@ -39,9 +42,10 @@ $(function() {
             }
         });
 
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a name defined
+        /* This test loops through each feed
+         * in the "allFeeds" object and ensures it has a name defined
          * and that the name is not empty.
+         * It has a similar setup to the previous test.
          */
 
         it("has name defined", function () {
@@ -54,51 +58,60 @@ $(function() {
     });
 
 
-    /* TODO: Write a new test suite named "The menu" */
+    /* Suite for testing the functionalites of the menu */
     describe("The menu", function() {
     
-        /* TODO: Write a test that ensures the menu element is
-         * hidden by default. You'll have to analyze the HTML and
-         * the CSS to determine how we're performing the
-         * hiding/showing of the menu element.
+        /* This test ensures the menu element is
+         * hidden by default.
+         * It does so by cheching if the "body" of the HTML
+         * contains the class named "menu-hidden" that makes the
+         * menu disappear from sight via CSS
          */
+        var body = document.body
 
         it("is initially hidden", function () {
-            expect(document.body.getAttribute("class")).toBe("menu-hidden");
+            expect(body.getAttribute("class")).toContain("menu-hidden");
         });
         
-         /* TODO: Write a test that ensures the menu changes
-          * visibility when the menu icon is clicked. This test
-          * should have two expectations: does the menu display when
-          * clicked and does it hide when clicked again.
+         /* This test ensures the menu changes
+          * visibility when the menu icon is clicked.
+          * This test have two expectations: does the menu display
+          * when clicked and does it hide when clicked again.
+          * It uses "beforeEach" to simulate clicking before each test
+          * It first checks if after the first click
+          * if the body lost its "menu-hidden" class
+          * Then after the second click it checks if the body
+          * contains the class "menu-hidden" again.
           */
         
         describe("when the button is clicked", function() {
 
             beforeEach( function(){
-                $(".menu-icon-link").trigger("click");
+                $(".menu-icon-link").click();
             });
 
             it("at first, it is visible", function () {
-                expect(document.body.getAttribute("class").length).toBe(0);
+                expect(body.getAttribute("class")).not.toContain("menu-hidden");
             });
 
             it("then it is invisible again", function () {
-               expect(document.body.getAttribute("class")).toBe("menu-hidden");
+               expect(body.getAttribute("class")).toContain("menu-hidden");
             });
 
         });
     
     });
 
-    /* TODO: Write a new test suite named "Initial Entries" */
+    /* Suite that tests the functionality of the loadFeed function */
     describe("Initial Entries", function() {
 
-        /* TODO: Write a test that ensures when the loadFeed
+        /* This test ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
-         * Remember, loadFeed() is asynchronous so this test wil require
-         * the use of Jasmine's beforeEach and asynchronous done() function.
+         * This test uses "beforeEach" and "done" to make sure that
+         * the asynchronous "loadFeed" function finished loading.
+         * After that it tests if the feed container has any elements
+         * by checking the length of its children. 
          */
 
         beforeEach(function(done) {
@@ -112,12 +125,22 @@ $(function() {
 
     });
 
-    /* TODO: Write a new test suite named "New Feed Selection"*/
+    /* Suite that tests the functionalities of the app when a new feed is loaded */
     describe("New Feed Selection", function() {
 
-        /* TODO: Write a test that ensures when a new feed is loaded
+        /* This test ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
+         * It uses "beforeEach" (and "done") to make sure that
+         * the asynchronous "loadFeed" function finished loading,
+         * it registers the initial content of the feed container
+         * and loads the second feed in the "allFeeds" array.
+         * Then it compares the initial content (first element of
+         * the "allFeeds" array) with the new one (second element of
+         * the "allFeeds" array). The test expects them to have
+         * different content.
+         * After the test run, the "afterEach" function makes sure
+         * that the first element of the "allFeeds" array is loaded again.
+         * The app is ready to use.
          */
         var initialContent;
 
