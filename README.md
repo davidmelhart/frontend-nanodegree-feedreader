@@ -3,6 +3,8 @@
 ### by David Melhart
 ============================================
 
+** To check the application and the test results in action, pleace open index.html in your browser. **
+
 ## 1. Intended Funcitonality
 
 The intended functionality of the app is feed reading. The main area displays a list of entries that contain posts from a specified feed.
@@ -31,6 +33,11 @@ The $() function is responsible for handing the menu, appending its elements and
 
 **Version 1.0**
 - Initial commit
+**Version 1.1**
+- Fixed tests considering further applications
+- Fixed comments
+**Version 1.2**
+- Fixed feed loading test function
 
 **To Do List**
 - 1. Download the [required project assets](http://github.com/udacity/frontend-nanodegree-feedreader).
