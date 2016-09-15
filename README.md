@@ -3,7 +3,7 @@
 ### by David Melhart
 ============================================
 
-** To check the application and the test results in action, pleace open index.html in your browser. **
+** To check the application and the test results in action, [click here](http://www.davidmelhart.com/portfolio/feedreader). **
 
 ## 1. Intended Funcitonality
 
